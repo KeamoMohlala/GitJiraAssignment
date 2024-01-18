@@ -1,0 +1,67 @@
+import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
+
+
+
+
+
+public class TaxCalculator {
+	private static final Map<String, Double> Tax_Rates = new HashMap<>();
+	
+	static {
+		Tax_Rates.put("manufactured", 0.205);
+		Tax_Rates.put("raw", 0.155);
+	}
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		double ItemPrice;
+		String ItemType;
+		String ItemName;
+		int ItemQuantity;
+		String choice = "y";
+
+		
+		while (choice.equalsIgnoreCase("y")) {
+		//Ask user for item name
+			System.out.print("Please enter the name of the item: ");
+			ItemName = scanner.nextLine();
+			
+		// Ask user for item price  
+			System.out.print("Please enter item price: ");
+
+			ItemPrice = Double.parseDouble(scanner.nextLine());
+		
+		 // Ask user for quantity
+			System.out.print("Please enter the quantity of the item: ");
+			ItemQuantity = Integer.parseInt(scanner.nextLine());
+			
+			
+		 // Ask user for Type
+			
+			System.out.print("Please enter Item type: ");
+		    ItemType = scanner.nextLine();
+		    
+		 double Tax_Rate = Tax_Rates.getOrDefault(ItemType.toLowerCase(), 0.0);
+		 double MaxTotal = ItemQuantity * ItemPrice;
+		 double Tax = Tax_Rate * MaxTotal;
+		 double Total = Tax + MaxTotal;
+		 
+		 
+		 
+		 
+		 System.out.println("Item Name " + ItemName);
+		 System.out.println("Item Price " + ItemPrice);
+		 System.out.println("Item Quantity " + ItemQuantity);
+		 System.out.println("Item Type " + ItemType);
+		 System.out.println("MaxTotal " + MaxTotal);
+		 System.out.println("Tax Rate " + (Tax_Rate * 100) + "%");
+		 System.out.println("Tax " + Tax);
+		 System.out.println("Total: " + Total);
+		 
+	 }
+	 
+	 scanner.close();
+	}
+}
